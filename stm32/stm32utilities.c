@@ -187,10 +187,10 @@ SPI_HandleTypeDef *pHSPI = NULL;
  for reading: 2 bytes
  byte0 : Device Opcode
  bit:	| 7 | 6 | 5 | 4 | 3 | 1 | 1 | 0 |
- 0   1   0   0   A2  A1  A0  1 --- Read:1 (Write:0)
- :-------- A0 part of device address, upto 3bit, 8 devices
- :------------ A1
- :---------------- A2
+          0   1   0   0   A2  A1  A0  1 --- Read:1 (Write:0)
+                                   :-------- A0 part of device address, upto 3bit, 8 devices
+                               :------------ A1
+                           :---------------- A2
 
  byte1 : Register
 

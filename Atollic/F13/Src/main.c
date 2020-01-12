@@ -207,8 +207,9 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12; //-- overclock from 9, from 72 to 96MHz
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12; //-- 96MHz <<OVERCLOCKED>>
+//  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9; //-- 72MHz
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
