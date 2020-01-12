@@ -186,8 +186,19 @@
 	#define ADDR_FLASH_PAGE_126   ((uint32_t)0x0801F800) /* Base @ of Page 126, 1 Kbytes */
 	#define ADDR_FLASH_PAGE_127   ((uint32_t)0x0801FC00) /* Base @ of Page 127, 1 Kbytes */
 
+#ifdef STM32F103C8_EEPROM
+	#define EEPROM_START_ADDRESS  ADDR_FLASH_PAGE_63		//-- use the last page of 64k
+
+#endif
+#ifdef STM32F103CB_EEPROM
 	#define EEPROM_START_ADDRESS  ADDR_FLASH_PAGE_127		//-- use the last page
-	extern void FLASH_PageErase(uint32_t PageAddress);	//-- this was NOT exported from stem32f1xx_hal_flash_ex.c for some reason
+
+#endif
+
+#ifndef EEPROM_START_ADDRESS
+#error "Must define either STM32F103CB_EEPROM or STM32F103C8_EEPROM for STM32F1"
+
+extern void FLASH_PageErase(uint32_t PageAddress);	//-- this was NOT exported from stem32f1xx_hal_flash_ex.c for some reason
 
 
 #endif
