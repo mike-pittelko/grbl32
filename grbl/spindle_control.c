@@ -131,18 +131,20 @@ void spindle_stop()
 {
 #ifdef STM32
   #ifdef VARIABLE_SPINDLE
-//      TIM_CtrlPWMOutputs(TIM1, DISABLE);
-	    //Spindle_PWM_Stop();
-			//LL_TIM_DisableAllOutputs(TIM2);
-			Spindle_Disable();
+	Spindle_Disable();
+	#ifdef INVERT_SPINDLE_ENABLE_PIN
+	   SetSpindleEnablebit();
+	#else
+	   ResetSpindleEnablebit();
+	#endif
 
-      #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
+    #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
         #ifdef INVERT_SPINDLE_ENABLE_PIN
           SetSpindleEnablebit();
         #else
           ResetSpindleEnablebit();
         #endif
-      #endif
+     #endif
   #else
       #ifdef INVERT_SPINDLE_ENABLE_PIN
         SetSpindleEnablebit();
@@ -197,17 +199,23 @@ void spindle_stop()
     #else
       if (pwm_value == SPINDLE_PWM_OFF_VALUE)
       {
-        //TIM_CtrlPWMOutputs(TIM1, DISABLE);
-        //Spindle_PWM_Stop();
-      	//LL_TIM_DisableAllOutputs(TIM2);
       	Spindle_Disable();
+		#ifdef INVERT_SPINDLE_ENABLE_PIN
+		   SetSpindleEnablebit();
+		#else
+		   ResetSpindleEnablebit();
+		#endif
+
       }
       else
       {
-        //TIM_CtrlPWMOutputs(TIM1, ENABLE);
-        //Spindle_PWM_Start();
-        //LL_TIM_EnableAllOutputs(TIM2);
       	Spindle_Enable();
+		#ifdef INVERT_SPINDLE_ENABLE_PIN
+		   ResetSpindleEnablebit();
+		#else
+		   SetSpindleEnablebit();
+		#endif
+
       }
     #endif
 
