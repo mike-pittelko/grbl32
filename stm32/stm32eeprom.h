@@ -197,6 +197,7 @@
 
 #ifndef EEPROM_START_ADDRESS
 #error "Must define either STM32F103CB_EEPROM or STM32F103C8_EEPROM for STM32F1"
+#endif 
 
 extern void FLASH_PageErase(uint32_t PageAddress);	//-- this was NOT exported from stem32f1xx_hal_flash_ex.c for some reason
 
@@ -230,5 +231,3 @@ extern void FLASH_PageErase(uint32_t PageAddress);	//-- this was NOT exported fr
 
 
 #endif /* __STM32EEPROM_H */
-
-
