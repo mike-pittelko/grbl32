@@ -165,32 +165,61 @@ void uart_sendch(uint8_t uC)
 
 
 
-
+#ifdef STM32F4
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 void Spindle_Disable()
 {
-#ifdef VARIABLE_SPINDLE_ENABLE_PIN
-  if (settings.spindle_enable_pin_mode == 1)
-    ResetSpindleEnablebit();
-  else
-    SetSpindleEnablebit();
-#endif
+	#ifdef VARIABLE_SPINDLE_ENABLE_PIN
+	  if (settings.spindle_enable_pin_mode == 1)
+		ResetSpindleEnablebit();
+	  else
+		SetSpindleEnablebit();
+	#endif
 
   LL_TIM_DisableAllOutputs(SPINDLE_TIMER);
 }
 
 void Spindle_Enable()
 {
-#ifdef VARIABLE_SPINDLE_ENABLE_PIN
-  if (settings.spindle_enable_pin_mode == 1)
-    SetSpindleEnablebit();
-  else
-    ResetSpindleEnablebit();
-#endif
+	#ifdef VARIABLE_SPINDLE_ENABLE_PIN
+	  if (settings.spindle_enable_pin_mode == 1)
+		SetSpindleEnablebit();
+	  else
+		ResetSpindleEnablebit();
+	#endif
 
   LL_TIM_EnableAllOutputs(SPINDLE_TIMER);
 }
+
+#endif
+
+#ifdef STM32F1
+void Spindle_Disable()
+{
+	#ifdef VARIABLE_SPINDLE_ENABLE_PIN
+	  if (settings.spindle_enable_pin_mode == 1)
+		ResetSpindleEnablebit();
+	  else
+		SetSpindleEnablebit();
+	#endif
+
+  LL_TIM_CC_DisableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
+}
+
+void Spindle_Enable()
+{
+	#ifdef VARIABLE_SPINDLE_ENABLE_PIN
+	  if (settings.spindle_enable_pin_mode == 1)
+		SetSpindleEnablebit();
+	  else
+		ResetSpindleEnablebit();
+	#endif
+
+  LL_TIM_CC_EnableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
+}
+#endif
+
 
 
     //------------------------------------------------------------------------
