@@ -131,12 +131,7 @@ void spindle_stop()
 {
 #ifdef STM32
   #ifdef VARIABLE_SPINDLE
-	Spindle_Disable();
-	#ifdef INVERT_SPINDLE_ENABLE_PIN
-	   SetSpindleEnablebit();
-	#else
-	   ResetSpindleEnablebit();
-	#endif
+      Spindle_Disable();
 
     #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
         #ifdef INVERT_SPINDLE_ENABLE_PIN
