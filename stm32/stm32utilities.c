@@ -177,7 +177,7 @@ void Spindle_Disable()
     SetSpindleEnablebit();
 #endif
 
-  LL_TIM_DisableAllOutputs(SPINDLE_TIMER);
+  LL_TIM_CC_DisableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
 }
 
 void Spindle_Enable()
@@ -189,7 +189,7 @@ void Spindle_Enable()
     ResetSpindleEnablebit();
 #endif
 
-  LL_TIM_EnableAllOutputs(SPINDLE_TIMER);
+  LL_TIM_CC_EnableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
 }
 
 
