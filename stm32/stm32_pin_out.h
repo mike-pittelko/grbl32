@@ -82,7 +82,7 @@
 
   #define SPINDLE_TIMER     TIM1
   #define SPINDLE_CHANNEL   LL_TIM_CHANNEL_CH1
-  #define Spindle_Timer_Init()        { LL_TIM_CC_EnableChannel(SPINDLE_TIMER,SPINDLE_CHANNEL); LL_TIM_DisableAllOutputs(SPINDLE_TIMER); LL_TIM_EnableCounter(SPINDLE_TIMER); } //-- start timer with PWM disabled
+  #define Spindle_Timer_Init()        { LL_TIM_CC_EnableChannel(SPINDLE_TIMER,SPINDLE_CHANNEL); LL_TIM_EnableAllOutputs(SPINDLE_TIMER); LL_TIM_EnableCounter(SPINDLE_TIMER); } //-- start timer with PWM disabled
 
 //  #define Spindle_Disable()           LL_TIM_DisableAllOutputs(SPINDLE_TIMER)
 //  #define Spindle_Enable()            LL_TIM_EnableAllOutputs(SPINDLE_TIMER)

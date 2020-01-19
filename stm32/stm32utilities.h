@@ -98,6 +98,8 @@ void uart_init();
 void uart_sendstr(const char *pStr);
 void uart_sendch(uint8_t ch);
 
+void Debug_Print(char * pStr);
+
 
 
 

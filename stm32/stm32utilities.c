@@ -177,7 +177,9 @@ void Spindle_Disable()
     SetSpindleEnablebit();
 #endif
 
+  LL_TIM_DisableAllOutputs(SPINDLE_TIMER);
   LL_TIM_CC_DisableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
+
 }
 
 void Spindle_Enable()
@@ -190,10 +192,17 @@ void Spindle_Enable()
 #endif
 
   LL_TIM_CC_EnableChannel(SPINDLE_TIMER, SPINDLE_CHANNEL);
+  LL_TIM_EnableAllOutputs(SPINDLE_TIMER);
 }
 
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+void Debug_Print(char * pStr)
+{
+	uart_sendstr(pStr);
+}
 
-    //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //-- Pin based calls, need to use HAL since LL pins and HAL pins are incompatible for F1
 void GPIO_ResetBits(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
