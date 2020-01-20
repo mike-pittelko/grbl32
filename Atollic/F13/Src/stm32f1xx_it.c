@@ -27,6 +27,8 @@
 #include "limits.h"		//-- HandleLimitIT
 #include "stepper.h"	//-- HandleStepSetIT and HandleStepResetIT
 #include "serial.h"		//-- HandleUartIT
+#include "task-schedule.h" //-- TaskScheduler
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -191,6 +193,7 @@ void SysTick_Handler(void)
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
+  TasksOnPowerOfTwo(HAL_GetTick());
   /* USER CODE END SysTick_IRQn 1 */
 }
 
@@ -356,6 +359,12 @@ void EXTI15_10_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+
+
+
+
+
+
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
